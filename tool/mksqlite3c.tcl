@@ -301,6 +301,7 @@ foreach file {
    crypto_impl.c
    crypto_libtomcrypt.c
    crypto_nss.c
+   crypto_botan.c
    crypto_openssl.c
    crypto_cc.c
 

@@ -174,6 +174,9 @@ void sqlcipher_activate() {
 #elif defined (SQLCIPHER_CRYPTO_NSS)
     extern int sqlcipher_nss_setup(sqlcipher_provider *p);
     sqlcipher_nss_setup(p);
+#elif defined (SQLCIPHER_CRYPTO_BOTAN)
+    extern int sqlcipher_botan_setup(sqlcipher_provider *p);
+    sqlcipher_botan_setup(p);
 #elif defined (SQLCIPHER_CRYPTO_OPENSSL)
     extern int sqlcipher_openssl_setup(sqlcipher_provider *p);
     sqlcipher_openssl_setup(p);

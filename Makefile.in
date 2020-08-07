@@ -146,6 +146,7 @@ LTLINK_EXTRAS += $(GCOV_LDFLAGS$(USE_GCOV))
 CRYPTOLIBOBJ = \
   crypto.lo \
   crypto_impl.lo \
+  crypto_botan.lo \
   crypto_openssl.lo \
   crypto_libtomcrypt.lo \
   crypto_nss.lo \
@@ -155,6 +156,7 @@ CRYPTOSRC = \
   $(TOP)/src/crypto.h \
   $(TOP)/src/sqlcipher.h \
   $(TOP)/src/crypto.c \
+  $(TOP)/src/crypto_botan.c \
   $(TOP)/src/crypto_impl.c \
 	$(TOP)/src/crypto_libtomcrypt.c \
 	$(TOP)/src/crypto_nss.c \
@@ -825,6 +827,8 @@ crypto_nss.lo:	$(TOP)/src/crypto_nss.c $(HDR)
 	$(LTCOMPILE) -c $(TOP)/src/crypto_nss.c
 crypto_libtomcrypt.lo:	$(TOP)/src/crypto_libtomcrypt.c $(HDR)
 	$(LTCOMPILE) -c $(TOP)/src/crypto_libtomcrypt.c
+crypto_botan.lo:	$(TOP)/src/crypto_botan.c $(HDR)
+	$(LTCOMPILE) -c $(TOP)/src/crypto_botan.c
 crypto_cc.lo:	$(TOP)/src/crypto_cc.c $(HDR)
 	$(LTCOMPILE) -c $(TOP)/src/crypto_cc.c
 # END CRYPTO

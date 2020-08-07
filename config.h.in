@@ -30,6 +30,9 @@
 /* Define to 1 if you have the `isnan' function. */
 #undef HAVE_ISNAN
 
+/* Define to 1 if you have the `botan-2' library (-lbotan-2). */
+#undef HAVE_LIBBOTAN2
+
 /* Define to 1 if you have the `crypto' library (-lcrypto). */
 #undef HAVE_LIBCRYPTO
 

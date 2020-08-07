@@ -60,9 +60,9 @@ static int sqlcipher_nss_activate(void *ctx) {
 }
 
 static int sqlcipher_nss_deactivate(void *ctx) {
-  CODEC_TRACE_MUTEX("sqlcipher_nss_activate: entering SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
+  CODEC_TRACE_MUTEX("sqlcipher_nss_deactivate: entering SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
   sqlite3_mutex_enter(sqlcipher_mutex(SQLCIPHER_MUTEX_PROVIDER_ACTIVATE));
-  CODEC_TRACE_MUTEX("sqlcipher_nss_activate: entered SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
+  CODEC_TRACE_MUTEX("sqlcipher_nss_deactivate: entered SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
 
   nss_init_count--;
   if (nss_init_count == 0 && nss_init_context != NULL) {
@@ -70,9 +70,9 @@ static int sqlcipher_nss_deactivate(void *ctx) {
     nss_init_context = NULL;
   } 
 
-  CODEC_TRACE_MUTEX("sqlcipher_nss_activate: leaving SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
+  CODEC_TRACE_MUTEX("sqlcipher_nss_deactivate: leaving SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
   sqlite3_mutex_leave(sqlcipher_mutex(SQLCIPHER_MUTEX_PROVIDER_ACTIVATE));
-  CODEC_TRACE_MUTEX("sqlcipher_nss_activate: left SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
+  CODEC_TRACE_MUTEX("sqlcipher_nss_deactivate: left SQLCIPHER_MUTEX_PROVIDER_ACTIVATE\n");
   return SQLITE_OK;
 }
 

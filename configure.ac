@@ -217,20 +217,28 @@ else
       BUILD_CFLAGS+=" -DSQLCIPHER_CRYPTO_LIBTOMCRYPT"
       AC_MSG_RESULT([libtomcrypt])
       AC_CHECK_LIB([tomcrypt], [register_cipher], ,
-                   AC_MSG_ERROR([Library crypto not found. Install libtomcrypt!"]))
+                   AC_MSG_ERROR([Library tomcrypt not found. Install libtomcrypt!"]))
     else
       if test "$crypto_lib" = "nss"; then
         CFLAGS+=" -DSQLCIPHER_CRYPTO_NSS"
         BUILD_CFLAGS+=" -DSQLCIPHER_CRYPTO_NSS"
         AC_MSG_RESULT([nss3])
         AC_CHECK_LIB([nss3], [PK11_Decrypt], ,
-                     AC_MSG_ERROR([Library crypto not found. Install nss!"]))
+                     AC_MSG_ERROR([Library nss3 not found. Install nss!"]))
       else
-        CFLAGS+=" -DSQLCIPHER_CRYPTO_OPENSSL"
-        BUILD_CFLAGS+=" -DSQLCIPHER_CRYPTO_OPENSSL"
-	      AC_MSG_RESULT([openssl])
-        AC_CHECK_LIB([crypto], [HMAC_Init_ex], ,
-                     AC_MSG_ERROR([Library crypto not found. Install openssl!"]))
+        if test "$crypto_lib" = "botan"; then
+          CFLAGS+=" -DSQLCIPHER_CRYPTO_BOTAN"
+          BUILD_CFLAGS+=" -DSQLCIPHER_CRYPTO_BOTAN"
+          AC_MSG_RESULT([botan-2])
+          AC_CHECK_LIB([botan-2], [botan_mac_init], ,
+                      AC_MSG_ERROR([Library botan-2 not found. Install botan!"]))
+        else
+          CFLAGS+=" -DSQLCIPHER_CRYPTO_OPENSSL"
+          BUILD_CFLAGS+=" -DSQLCIPHER_CRYPTO_OPENSSL"
+          AC_MSG_RESULT([openssl])
+          AC_CHECK_LIB([crypto], [HMAC_Init_ex], ,
+                      AC_MSG_ERROR([Library crypto not found. Install openssl!"]))
+        fi
       fi
     fi
   fi
